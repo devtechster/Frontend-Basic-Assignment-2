@@ -1,194 +1,137 @@
+/* General Page Styling */
 body {
-    margin: 0;
-    font-family: fantasy;
+  background-color: #0d1117;
+  color: #f0f6fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Header CSS Starts */
-
-.header-container{
-    background-color: rgb(1, 30, 53);
-    height: 13vh;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: space-around   ;
-    border-bottom: 3px solid #818386;
+/* Header Section */
+.header-container {
+  background-color: #1a1a2e;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.logo img{
-    height: 12vh;
-    padding:8px ;
-    align-self: center;
+.logo img {
+  height: 60px;
+  border-radius: 50%;
 }
 
-.nav-bar ul{
-
-    list-style-type: none;
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  padding-left: 0;
+  margin: 0;
 }
 
-.signup{
-    background-color: cadetblue;
-    color: azure;
-    border: 2px  solid tan;
-    padding: 10px;
-    width: max-content;
-    border-radius: 10%;
-
+.nav-bar a {
+  color: #f0f6fc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-.signup:hover{
-    cursor: pointer;
-    background-color: whitesmoke;
-    color: cadetblue;
-}
-.nav-bar{
-    margin-left: 25vw;
+.nav-bar a:hover {
+  color: #00bcd4;
 }
 
-.nav-bar li{
-    display: inline;
-    padding: 1em;
+.signup {
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: background 0.3s;
 }
 
-.nav-bar ul li a{
-    text-decoration: none;
-    color: aliceblue;
+.signup:hover {
+  background-color: #0097a7;
 }
 
-.nav-bar ul li a:hover{
-    color: yellow;
-    border-bottom:1px solid yellow;
-}
-/* Header CSS Ends  */
-
-.mainBody{
-    background-image: url('../images/wall.png') ;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 80vh;
-    margin: 0;
+/* Hero Section */
+.mainBody {
+  background: url('../images/hogwarts-bg.jpg') center/cover no-repeat;
+  height: 60vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.mainBody-mask{
-    height: 80vh;
-    background-color: rgb(0,0,0,0.4);
-    text-align: center; 
+.mainBody-mask {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 10px;
 }
 
-.mainBody-mask h1{
-    padding-top: 25vh;
-    margin: 0;
-    font-size: 5em;
-    color: blanchedalmond;
+.mainBody-mask h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-.mainBody-mask h1:hover{
-    color: silver;
+.mainBody-mask a {
+  background-color: #00bcd4;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
 }
 
-
-.mainBody-mask a{
-    text-decoration: none;
-    color: cadetblue;
-    background-color: #ffff ;
-    padding:5px;
-    font-size: 3em;
-    border-radius: 5px;
-    display: block;
-    width: fit-content;
-    margin: 1em auto;
+.mainBody-mask a:hover {
+  background-color: #0097a7;
 }
 
-.mainBody-mask a:hover{
-    color: #ffff ;
-    background-color: cadetblue;
-
+/* Houses Section */
+.paper-layout {
+  padding: 3rem 1rem;
+  background-color: #12141c;
 }
 
-.paper-layout{
-        display: flex ;
-        align-items: center;
-        flex-direction: column;
-        background-image: url('../images/walltwo.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 80vh;
-        margin: 0;
-    
-    }
-
-.row-house
-{
-    display: flex;
-    flex-direction: row;
-    color: aliceblue;
+.paper-layout h1 {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.paper-layout h1
-{
-    color: rgb(20, 230, 195);
-}
-.paper-layout h1:hover
-{
-    color: whitesmoke;
-    cursor: pointer;
-    margin: 1em auto;
+.row-house {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
-.row-house :hover
-{
-    color: chartreuse;
-    cursor: pointer;
-}
-.house h2
-{
-    font-size: 1em;
-    color: #ffff;
+.house {
+  background-color: #1a1a2e;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  width: 250px;
+  transition: transform 0.3s;
 }
 
-.house img{
-
-    height: 200px;
-    width: 200px;
-    padding: 1em;
+.house img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 1rem;
 }
 
-.house{
-    box-shadow: 5px 5px 20px white;
-    padding: 2em;
-    justify-content: space-around;
+.house:hover {
+  transform: scale(1.05);
 }
 
-footer{
-    height: 5vh;
-    background-color: cadetblue;
-    border-top: 2px solid rgb(2, 0, 24);
-    text-align: center;
-    color: blanchedalmond;
-    padding-top: 10px  ;
+/* Footer */
+footer {
+  background-color: #1a1a2e;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

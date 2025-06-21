@@ -1,94 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harry Potter's World</title>
-  <link rel="shortcut icon" href="./images/harry.png" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts School of Witchcraft and Wizardry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --secondary-bronze: #cd7f32;
+            --dark-blue: #1a237e;
+            --crimson-red: #8b0000;
+            --forest-green: #0d5016;
+            --midnight-black: #0a0a0a;
+            --parchment: #f4f1e8;
+            --silver: #c0c0c0;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: var(--midnight-black);
+            color: var(--parchment);
+            line-height: 1.6;
+        }
+
+        .navbar-brand {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-gold) !important;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--midnight-black) 0%, var(--dark-blue) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-gold);
+            padding: 1rem 0;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--parchment) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-gold) !important;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.pexels.com/photos/2062321/pexels-photo-2062321.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            color: var(--parchment);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn-magical {
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-bronze));
+            border: none;
+            color: var(--midnight-black);
+            font-weight: 600;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn-magical:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            color: var(--midnight-black);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-gold), var(--secondary-bronze));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .house-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            height: 100%;
+        }
+
+        .house-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .gryffindor { border-color: #740001; }
+        .gryffindor:hover { box-shadow: 0 15px 35px rgba(116,0,1,0.4); }
+
+        .hufflepuff { border-color: #ecb939; }
+        .hufflepuff:hover { box-shadow: 0 15px 35px rgba(236,185,57,0.4); }
+
+        .ravenclaw { border-color: #0e1a40; }
+        .ravenclaw:hover { box-shadow: 0 15px 35px rgba(14,26,64,0.4); }
+
+        .slytherin { border-color: #1a472a; }
+        .slytherin:hover { box-shadow: 0 15px 35px rgba(26,71,42,0.4); }
+
+        .house-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-gold);
+        }
+
+        .course-card:hover {
+            transform: translateX(10px);
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.1) 100%);
+        }
+
+        .faculty-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .faculty-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .faculty-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--midnight-black) 100%);
+            padding: 4rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            color: var(--parchment);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            font-family: 'Cinzel', serif;
+        }
+
+        .admission-form {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-gold);
+            color: var(--parchment);
+            border-radius: 8px;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--secondary-bronze);
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+            color: var(--parchment);
+        }
+
+        .form-control::placeholder {
+            color: rgba(244, 241, 232, 0.7);
+        }
+
+        .footer {
+            background: var(--midnight-black);
+            border-top: 2px solid var(--primary-gold);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-links a {
+            color: var(--parchment);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '✨';
+            position: absolute;
+            font-size: 20px;
+            color: var(--primary-gold);
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .floating-elements::before {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-elements::after {
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="./images/logo.jpg" alt="Logo" class="rounded-circle me-2" width="50" height="50">
-        <strong>Hogwarts</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Be the Master Magician</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Buy Magic Wands</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Black Magic</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">About Hogwarts</a></li>
-        </ul>
-        <button class="btn btn-outline-info ms-3">Learn Magic</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero d-flex align-items-center justify-content-center text-center text-white">
-    <div class="hero-overlay py-5 px-3">
-      <h1 class="display-4 fw-bold">Welcome to Hogwarts</h1>
-      <p class="lead">The magical world awaits you</p>
-      <a href="#houses" class="btn btn-info btn-lg mt-3">Know More</a>
-    </div>
-  </section>
-
-  <!-- Houses Section -->
-  <section class="py-5 bg-light" id="houses">
-    <div class="container">
-      <h2 class="text-center mb-5 fw-bold">HOUSES</h2>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <img src="./images/gryff.png" class="card-img-top" alt="Gryffindor">
-            <div class="card-body text-center">
-              <h5 class="card-title">Gryffindor</h5>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-hat-wizard me-2"></i>Hogwarts
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#houses">Houses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faculty">Faculty</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admission">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
             </div>
-          </div>
         </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <img src="./images/slyth.jpg" class="card-img-top" alt="Slytherin">
-            <div class="card-body text-center">
-              <h5 class="card-title">Slytherin</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <img src="./images/rave.jpg" class="card-img-top" alt="Ravenclaw">
-            <div class="card-body text-center">
-              <h5 class="card-title">Ravenclaw</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <img src="./images/huff.jpg" class="card-img-top" alt="Hufflepuff">
-            <div class="card-body text-center">
-              <h5 class="card-title">Hufflepuff</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3 mt-5">
-    &copy; All rights reserved by Hogwarts
-  </footer>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="floating-elements"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hogwarts School of Witchcraft and Wizardry</h1>
+                <p class="lead">Where Magic Begins and Legends Are Born</p>
+                <a href="#admission" class="btn btn-magical">Apply Now</a>
+            </div>
+        </div>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title">About Our School</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://images.pexels.com/photos/1005012/pexels-photo-1005012.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         class="img-fluid rounded shadow-lg" alt="Hogwarts Castle">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="text-gold mb-4">Excellence in Magical Education Since 990 AD</h3>
+                    <p class="mb-4">Hogwarts School of Witchcraft and Wizardry is the finest magical institution in the wizarding world, nestled in the Scottish Highlands. For over a thousand years, we have been nurturing young witches and wizards, helping them discover their magical potential and preparing them for successful careers in the magical community.</p>
+                    <p class="mb-4">Our curriculum covers all aspects of magical education, from fundamental spellcasting to advanced magical theory. Students live in our historic castle, forming lifelong friendships and memories while mastering the magical arts.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-star text-warning me-3"></i>
+                                <span>Accredited by the Ministry of Magic</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-shield-alt text-warning me-3"></i>
+                                <span>Comprehensive Safety Protocols</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-graduation-cap text-warning me-3"></i>
+                                <span>Expert Faculty & Staff</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-book-open text-warning me-3"></i>
+                                <span>Ancient Magical Library</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Houses Section -->
+    <section id="houses" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-title">The Four Houses</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="house-card gryffindor">
+                        <div class="house-icon text-center">
+                            <i class="fas fa-fire" style="color: #740001;"></i>
+                        </div>
+                        <h4 class="text-center mb-3" style="color: #740001;">Gryffindor</h4>
+                        <p class="text-center"><strong>Values:</strong> Courage, Bravery, Nerve, Chivalry</p>
+                        <p class="text-center"><small><strong>Founder:</strong> Godric Gryffindor</small></p>
+                        <p class="text-center"><small><strong>Element:</strong> Fire</small></p>
+                        <p class="text-center"><small><strong>Animal:</strong> Lion</small></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="house-card hufflepuff">
+                        <div class="house-icon text-center">
+                            <i class="fas fa-seedling" style="color: #ecb939;"></i>
+                        </div>
+                        <h4 class="text-center mb-3" style="color: #ecb939;">Hufflepuff</h4>
+                        <p class="text-center"><strong>Values:</strong> Hard Work, Patience, Loyalty, Fair Play</p>
+                        <p class="text-center"><small><strong>Founder:</strong> Helga Hufflepuff</small></p>
+                        <p class="text-center"><small><strong>Element:</strong> Earth</small></p>
+                        <p class="text-center"><small><strong>Animal:</strong> Badger</small></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="house-card ravenclaw">
+                        <div class="house-icon text-center">
+                            <i class="fas fa-feather-alt" style="color: #946b2d;"></i>
+                        </div>
+                        <h4 class="text-center mb-3" style="color: #946b2d;">Ravenclaw</h4>
+                        <p class="text-center"><strong>Values:</strong> Intelligence, Wit, Learning, Wisdom</p>
+                        <p class="text-center"><small><strong>Founder:</strong> Rowena Ravenclaw</small></p>
+                        <p class="text-center"><small><strong>Element:</strong> Air</small></p>
+                        <p class="text-center"><small><strong>Animal:</strong> Eagle</small></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="house-card slytherin">
+                        <div class="house-icon text-center">
+                            <i class="fas fa-tint" style="color: #1a472a;"></i>
+                        </div>
+                        <h4 class="text-center mb-3" style="color: #1a472a;">Slytherin</h4>
+                        <p class="text-center"><strong>Values:</strong> Ambition, Cunning, Leadership, Resourcefulness</p>
+                        <p class="text-center"><small><strong>Founder:</strong> Salazar Slytherin</small></p>
+                        <p class="text-center"><small><strong>Element:</strong> Water</small></p>
+                        <p class="text-center"><small><strong>Animal:</strong> Serpent</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <p>Years of Excellence</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">800</div>
+                        <p>Students Currently Enrolled</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <p>Expert Faculty Members</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <p>Job Placement Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Magical Curriculum</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="course-card">
+                        <h5><i class="fas fa-magic text-warning me-2"></i>Transfiguration</h5>
+                        <p>Master the art of changing the form and appearance of objects, animals, and even people.</p>
+                    </div>
+                    <div class="course-card">
+                        <h5><i class="fas fa-flask text-warning me-2"></i>Potions</h5>
+                        <p>Learn to brew magical potions with precision and care in our state-of-the-art dungeons.</p>
+                    </div>
+                    <div class="course-card">
+                        <h5><i class="fas fa-leaf text-warning me-2"></i>Herbology</h5>
+                        <p>Study magical plants and fungi in our extensive greenhouses and botanical gardens.</p>
+                    </div>
+                    <div class="course-card">
+                        <h5><i class="fas fa-shield-alt text-warning me-2"></i>Defense Against the Dark Arts</h5>
+                        <p>Protect yourself and others from dark creatures and malicious magic.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="course-card">
+                        <h5><i class="fas fa-star text-warning me-2"></i>Charms</h5>
+                        <p>Learn essential spells for everyday magical life and advanced enchantments.</p>
+                    </div>
+                    <div class="course-card">
+                        <h5><i class="fas fa-book text-warning me-2"></i>History of Magic</h5>
+                        <p>Explore the rich history of the wizarding world and its most significant events.</p>
+                    </div>
+                    <div class="course-card">
+                        <h5><i class="fas fa-moon text-warning me-2"></i>Astronomy</h5>
+                        <p>Study celestial movements and their influence on magical phenomena.</p>
+                    </div>
+                    <div class="course-card">
+                        <h5><i class="fas fa-broom text-warning me-2"></i>Flying Lessons</h5>
+                        <p>Master the art of broomstick flying with our experienced Quidditch coaches.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section id="faculty" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-title">Distinguished Faculty</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="faculty-card">
+                        <img src="https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=300" 
+                             class="faculty-img" alt="Professor McGonagall">
+                        <h5>Prof. Minerva McGonagall</h5>
+                        <p class="text-warning">Deputy Headmistress</p>
+                        <p><small>Transfiguration & Head of Gryffindor House</small></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="faculty-card">
+                        <img src="https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=300" 
+                             class="faculty-img" alt="Professor Snape">
+                        <h5>Prof. Severus Snape</h5>
+                        <p class="text-warning">Potions Master</p>
+                        <p><small>Advanced Potions & Head of Slytherin House</small></p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="faculty-card">
+                        <img src="https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=300" 
+                             class="faculty-img" alt="Professor Sprout">
+                        <h5>Prof. Pomona Sprout</h5>
+                        <p class="text-warning">Herbology Professor</p>
+                        <p><small>Magical Botany & Head of Hufflepuff House</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section id="admission" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Apply to Hogwarts</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="admission-form">
+                        <h4 class="text-center mb-4">Begin Your Magical Journey</h4>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="birthdate" class="form-label">Date of Birth</label>
+                                        <input type="date" class="form-control" id="birthdate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Home Address</label>
+                                <textarea class="form-control" id="address" rows="3" placeholder="Enter your complete address"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="magical-experience" class="form-label">Previous Magical Experience</label>
+                                <textarea class="form-control" id="magical-experience" rows="4" 
+                                         placeholder="Describe any magical incidents, abilities, or experiences you've had"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="house-preference" class="form-label">House Preference (Optional)</label>
+                                <select class="form-control" id="house-preference">
+                                    <option value="">No Preference - Let the Sorting Hat Decide</option>
+                                    <option value="gryffindor">Gryffindor</option>
+                                    <option value="hufflepuff">Hufflepuff</option>
+                                    <option value="ravenclaw">Ravenclaw</option>
+                                    <option value="slytherin">Slytherin</option>
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-magical">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Application
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-map-marker-alt fa-3x text-warning mb-3"></i>
+                        <h5>Location</h5>
+                        <p>Hogwarts Castle<br>Scottish Highlands<br>Scotland, UK</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-owl fa-3x text-warning mb-3"></i>
+                        <h5>Owl Post</h5>
+                        <p>Send your owl to:<br>Hogwarts School of<br>Witchcraft and Wizardry</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-fire fa-3x text-warning mb-3"></i>
+                        <h5>Floo Network</h5>
+                        <p>Floo Address:<br>"Hogwarts - Headmaster's Office"<br>Available 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5 class="text-warning mb-3">Hogwarts School</h5>
+                    <p>Educating witches and wizards for over a millennium. Where magic begins and legends are born.</p>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="text-warning mb-3">Quick Links</h6>
+                    <div class="footer-links">
+                        <p><a href="#about">About</a></p>
+                        <p><a href="#houses">Houses</a></p>
+                        <p><a href="#courses">Courses</a></p>
+                        <p><a href="#faculty">Faculty</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="text-warning mb-3">Admissions</h6>
+                    <div class="footer-links">
+                        <p><a href="#admission">Apply Now</a></p>
+                        <p><a href="#">Requirements</a></p>
+                        <p><a href="#">Financial Aid</a></p>
+                        <p><a href="#">Campus Tours</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="text-warning mb-3">Student Life</h6>
+                    <div class="footer-links">
+                        <p><a href="#">Quidditch</a></p>
+                        <p><a href="#">Clubs</a></p>
+                        <p><a href="#">Events</a></p>
+                        <p><a href="#">Library</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="text-warning mb-3">Resources</h6>
+                    <div class="footer-links">
+                        <p><a href="#">Academic Calendar</a></p>
+                        <p><a href="#">Student Portal</a></p>
+                        <p><a href="#">Career Services</a></p>
+                        <p><a href="#">Alumni Network</a></p>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: var(--primary-gold);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Hogwarts School of Witchcraft and Wizardry. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Established 990 AD | Ministry of Magic Approved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS for smooth scrolling -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(26,35,126,0.95) 100%)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, var(--midnight-black) 0%, var(--dark-blue) 100%)';
+            }
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! A Hogwarts owl will deliver your acceptance letter within 3-5 business days.');
+        });
+    </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 # Hogwarts School of Witchcraft and Wizardry - Official Website
 
 A beautiful, fully-featured website for the legendary Hogwarts School of Witchcraft and Wizardry. This project showcases a professional institutional website with magical theming, built using modern web technologies.
-![Hogwarts Website Preview](harry-potter-world-lbu2p95dy-dev-techsters-projects.vercel.app/)
+![Hogwarts Website Preview](https://harry-potter-world-lbu2p95dy-dev-techsters-projects.vercel.app/)
 
 
 ## 🏰 Features

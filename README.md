@@ -2,7 +2,7 @@
 
 A beautiful, fully-featured website for the legendary Hogwarts School of Witchcraft and Wizardry. This project showcases a professional institutional website with magical theming, built using modern web technologies.
 
-![Hogwarts Website Preview](https://vercel.com/dev-techsters-projects/harry-potter-world/xoAAR26aTcy1CybqQHbC225Lx5ps)
+![Hogwarts Website Preview](https://harry-potter-world-d2gge2zhg-dev-techsters-projects.vercel.app/)
 
 ## 🏰 Features
 

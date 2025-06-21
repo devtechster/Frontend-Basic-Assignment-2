@@ -2,7 +2,7 @@
 
 A beautiful, fully-featured website for the legendary Hogwarts School of Witchcraft and Wizardry. This project showcases a professional institutional website with magical theming, built using modern web technologies.
 
-![Hogwarts Website Preview](https://images.pexels.com/photos/2062321/pexels-photo-2062321.jpeg?auto=compress&cs=tinysrgb&w=800)
+![Hogwarts Website Preview](https://devtechster.github.io/Frontend-Basic-Assignment-2/)
 
 ## 🏰 Features
 
